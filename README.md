@@ -1,12 +1,14 @@
 # gazebo_ros_robot_demo
+Drag the white ball to the view field of the robot to navigate it.
 
+![project_screenshot](images/Screenshot.png)
 ## Usage
 1. Pull the code and go into the top level directory of this project.
 2. `catkin_make`
 3. `source devel/setup.bash`
-4. Launch the robot inside your world 
+4. Launch the robot inside your world
 5. `roslaunch my_robot world.launch`
-6. Run drive_bot and process_image node 
+6. Run drive_bot and process_image node
 7. open a new terminal and go into the top level again
 8. `source devel/setup.bash`
 9. `roslaunch ball_chaser ball_chaser.launch`
