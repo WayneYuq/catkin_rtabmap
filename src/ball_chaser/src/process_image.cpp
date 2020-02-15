@@ -11,20 +11,16 @@ public:
     sub_ = n_.subscribe("/camera/rgb/image_raw", 10, &ProcessImage::process_image_callback, this);
   }
 
-  // This callback function continuously executes and reads the image data
+  // Continuously executes and reads the image data
   void process_image_callback(const sensor_msgs::Image img)
   {
     int white_pixel = 255;
     int one_third = img.step / 3;
     int two_third = img.step * 2 / 3;
     presence_ = false;
-
-    // TODO: Loop through each pixel in the image and check if there's a bright white one
-    // Then, identify if this pixel falls in the left, mid, or right side of the image
-    // Depending on the white ball position, call the drive_bot function and pass velocities to it
-    // Request a stop when there's no white ball seen by the camera
-    for(int i = 0; i < img.height*img.step; ++i) {
-      if (img.data[i] == white_pixel) {
+    int i = 0;
+    while (i < img.height*img.step) {
+      if (img.data[i] == white_pixel && img.data[i+1] == white_pixel && img.data[i+2] == white_pixel) {
         presence_ = true;
         if (i % img.step < one_third)
           pos_ = left;
@@ -35,6 +31,7 @@ public:
 
         break;
       }
+      i += 3;
     }
 
     float lin_x;
@@ -63,7 +60,7 @@ public:
     drive_robot(lin_x, ang_z);
   }
 
-  // This function calls the command_robot service to drive the robot in the specified direction
+  // Calls the command_robot service to drive the robot in the specified direction
   void drive_robot(float lin_x, float ang_z)
   {
     ball_chaser::DriveToTarget srv;

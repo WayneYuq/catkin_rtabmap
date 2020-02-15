@@ -28,8 +28,6 @@ public:
     // Publish angles to drive the robot
     motor_command_publisher_.publish(motor_command);
 
-    ros::Duration(0.1).sleep();
-
     res.msg_feedback = "linear_x set: " + std::to_string(req.linear_x) + " , angular_z: " + std::to_string(req.angular_z);
     ROS_INFO_STREAM(res.msg_feedback);
 
