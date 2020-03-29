@@ -10,7 +10,7 @@ Create a 2D occupancy grid and 3D octomap from a simulated environment using a m
 
 ## Usage
 1. [Click here](https://github.com/introlab/rtabmap_ros) to install `rtabma_ros`
-2. Change working directory to top level and `catkin_make
+2. Change working directory to top level and `catkin_make`
 3. `source devel/setup.bash`
 4. Launch the robot inside your world
 5. `roslaunch my_robot world.launch`
